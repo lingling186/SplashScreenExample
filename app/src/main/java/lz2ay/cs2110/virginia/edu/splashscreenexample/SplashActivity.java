@@ -37,6 +37,7 @@ public class SplashActivity extends Activity {
          * Sleep for some time and then start new activity
          */
         public void run() {
+            //test github
             try {
                 // Sleeping - displays the splash screen for this long before switching activities
                 Thread.sleep(SLEEP_TIME*1000); // Display (sleep)
