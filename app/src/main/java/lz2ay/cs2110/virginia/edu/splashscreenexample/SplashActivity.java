@@ -39,6 +39,7 @@ public class SplashActivity extends Activity {
         public void run() {
             //test github
             //I want to test the push function
+            //what the problem, what does the mean of remote
             try {
                 // Sleeping - displays the splash screen for this long before switching activities
                 Thread.sleep(SLEEP_TIME*1000); // Display (sleep)
