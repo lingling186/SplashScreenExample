@@ -18,32 +18,57 @@ import java.util.ArrayList;
 
 public class PlayActivity extends ActionBarActivity {
     protected RelativeLayout layout;
-    private ImageView evil;
     private ArrayList<Monster> monsters;
     private ImageView self;
     private int score;
 
     public void setup(){
         layout = (RelativeLayout) this.findViewById(R.id.relativelayout2);
-        evil   = (ImageView) this.findViewById(R.id.evil);
-        evil.setImageDrawable(getResources().getDrawable(R.drawable.ivysaur));
         self   = (ImageView) this.findViewById(R.id.self);
 
-        //set up table
-        TableLayout tableLayout = (TableLayout) findViewById(R.id.monster_table);
-        int row_num  = tableLayout.getChildCount();
-        for(int i = 0 ; i < row_num ; i++){
-            TableRow tablerow = (TableRow)tableLayout.getChildAt(i);
-            for(int j = 0 ; j < tablerow.getChildCount() ; j++) {
-                ImageView imagCell = (ImageView) tablerow.getChildAt(j);
-                imagCell.setImageDrawable(getResources().getDrawable(R.drawable.gengar));
-            }
-        }
+        //create table
+        createMonterTable();
+        //use monsters list to set up table
+//        TableLayout tableLayout = (TableLayout) findViewById(R.id.monster_table);
+//        int row_num  = tableLayout.getChildCount();
+//        for(int i = 0 ; i < row_num ; i++){
+//            TableRow tablerow = (TableRow)tableLayout.getChildAt(i);
+//            for(int j = 0 ; j < tablerow.getChildCount() ; j++) {
+//                ImageView imagCell = (ImageView) tablerow.getChildAt(j);
+//                imagCell.setImageDrawable(getResources().getDrawable(R.drawable.gengar));
+//            }
+//        }
 
 
         ArrayList<Monster> initial_monsters = new ArrayList<Monster>();
         Monster amonster = new Monster(initial_monsters.size(), 1);
 //      set monster list
+    }
+
+    public void createMonterTable(){
+        TableLayout table = (TableLayout) findViewById(R.id.monster_table);
+        int mRows = 5;
+        int mCols = 5;
+        for (int i = 0; i < mRows; i++) {
+
+            TableRow tr = new TableRow(this);
+            TableRow.LayoutParams lp = new TableRow.LayoutParams(TableRow.LayoutParams.FILL_PARENT, TableRow.LayoutParams.WRAP_CONTENT);
+            tr.setLayoutParams(lp);
+
+            for (int j = 0; j < mCols; j++) {
+
+                ImageView view = new ImageView(this);
+                view.setImageResource(R.drawable.ivysaur);
+                tr.addView(view);
+            }
+            table.addView(tr);
+        }
+
+    }
+
+
+    public void setupMonsterTable(ArrayList<Monster> list, int level){
+
     }
 
     @Override
@@ -88,37 +113,13 @@ public class PlayActivity extends ActionBarActivity {
     class Monster{
         int id;
         int level;
+        int health;
         ImageView img;
 
         public Monster(int last_id, int l){
             this.id = last_id + 1;
             this.level = l;
-
-
-            /*
-            *for (int i = 0; i < mRows; i++) {
-
-        TableRow tr = new TableRow(mContext);
-        tr.setLayoutParams(new TableRow.LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT));
-
-        for (int j = 0; j < mCols; j++) {
-
-            ImageView view = new ImageView(this);
-            view.setImageResource(R.drawable.star_on)
-            tr.addView(view);
-        }
-        table.addView(tr);
-    } */
-//            switch (l) {
-//                case 1:
-//                    img.setImageDrawable(getResources().getDrawable(R.drawable.gengar));
-//                case 2:
-//                    img.setImageDrawable(getResources().getDrawable(R.drawable.surskit));
-//                case 3:
-//                    img.setImageDrawable(getResources().getDrawable(R.drawable.squirtle));
-//                default:
-//                    img.setImageDrawable(getResources().getDrawable(R.drawable.ivysaur));
-//            }
+            this.health = l;
         }
 
         public int getLevel(){
@@ -133,9 +134,37 @@ public class PlayActivity extends ActionBarActivity {
             return img;
         }
 
+        public int getHealth(){
+            return health;
+        }
+
         public void setImageView(ImageView view){
             img = view;
         }
+
+        public void setImgByLevel(){
+            int l = this.level;
+
+            switch (l) {
+                case 1:
+                    img.setImageDrawable(getResources().getDrawable(R.drawable.gengar));
+                case 2:
+                    img.setImageDrawable(getResources().getDrawable(R.drawable.surskit));
+                case 3:
+                    img.setImageDrawable(getResources().getDrawable(R.drawable.squirtle));
+                default:
+                    img.setImageDrawable(getResources().getDrawable(R.drawable.ivysaur));
+            }
+        }
+
+        public void getHurt(int bulletVal){
+            this.health -= bulletVal;
+            if(health < 0 ){
+                monsters.remove(this);
+            }
+        }
+
+
     }
 
 
