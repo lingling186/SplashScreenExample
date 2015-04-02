@@ -1,0 +1,62 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="lz2ay.cs2110.virginia.edu.splashscreenexample.PlayActivity"
+    android:id="@+id/relativelayout">
+
+    <!--
+    <TextView android:text="activity play page" android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView3" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="testbutton"
+        android:id="@+id/b1"
+        android:layout_below="@+id/textView3"
+        android:onClick="buttonClicked"/>
+
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@mipmap/ic_launcher"
+        android:id="@+id/img"
+        android:backgroundTint="@color/abc_primary_text_disable_only_material_dark"
+
+        android:layout_below="@+id/b1"
+        android:layout_toRightOf="@+id/textView3"
+        android:layout_toEndOf="@+id/textView3" />
+    -->
+
+    <ImageView
+        android:id="@+id/evil"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        />
+
+    <ImageView
+        android:id="@+id/self"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:src="@drawable/ninja"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        />
+
+    <ImageView
+        android:id="@+id/bullet"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:src="@drawable/dart"
+        android:layout_alignTop="@+id/self"
+        android:layout_alignRight="@+id/self"
+        />
+
+
+
+</RelativeLayout>
